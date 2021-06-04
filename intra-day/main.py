@@ -12,6 +12,9 @@ from train import train
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+"""
+Data from source and target domains are dictions whose keys are datetime and values are lists of daily data.
+"""
 with open('source_price_5min.pkl', 'rb') as handle:
     data_source = pickle.load(handle)
 with open('target_price_5min.pkl', 'rb') as handle:
