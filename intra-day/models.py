@@ -5,7 +5,9 @@ import torch.nn as nn
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-
+"""
+LSTM works as the benchmark
+"""
 class LSTM(nn.Module):
     def __init__(self, input_dim, hidden_dim, num_layers, output_dim, dropout = 0):
         super(LSTM, self).__init__()
@@ -34,6 +36,10 @@ class LSTM(nn.Module):
         out = self.fc1(out)
         return out
 
+
+"""    
+DALSTM is LSTM combined with DAN or CORAL, depending on the choice of the attribute 'method' 
+"""
 class DALSTM(nn.Module):
     def __init__(self, input_dim, hidden_dim, num_layers, output_dim, dropout=0, method='CORAL'):
         super(DALSTM, self).__init__()
@@ -81,6 +87,10 @@ class DALSTM(nn.Module):
         loss = torch.sum(loss) / (4*d*d)
         return loss
 
+    
+"""
+GCLSTM is LSTM+CDAN, which is the abbreviation of Gaussian-Copua based LSTM.
+"""
 class GCLSTM(nn.Module):
     def __init__(self, input_dim, hidden_dim, num_layers, output_dim, dropout = 0, method='KL'):
         super(GCLSTM, self).__init__()
