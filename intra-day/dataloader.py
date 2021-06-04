@@ -5,6 +5,9 @@ import torch.utils.data as Data
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler
 
 def package_data(input, look_back = 12):
+	"""
+	To package the data with length 12
+	"""
 	data = []
 	for index in range(input.shape[0] - look_back + 1):
 		data.append(input[index:index + look_back])
@@ -12,6 +15,12 @@ def package_data(input, look_back = 12):
 	return data
 
 def load_data(dict_data, data_type='price'):
+	"""
+	Normalizations. The input is a diction whose keys are data of type Datetime.date and values are lists of daily data.
+	For return, it is (X-X.mean(axis=0))/X.std(axis=0)
+	For price, it is (X - X.max(axis=0))/(X.max(axis=0) - X.min(axis=0))
+	For scale, it is X/X.max(axis=0)
+	"""
 	values_list = list(dict_data.values())
 	x_all, y_all = values_list[0][0], values_list[0][1]
 	for i in range(1,len(values_list)):
