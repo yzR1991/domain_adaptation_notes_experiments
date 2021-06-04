@@ -27,8 +27,11 @@ y_test = torch.from_numpy(y_test).type(torch.Tensor).to(device)
 dataset_train = Data.TensorDataset(X_train, y_train)
 dataset_test = Data.TensorDataset(X_test, y_test)
 
-
-mod = {'model':'CDAN', 'hidden_dim': 64, 'num_layers': 1,
+"""
+Diction mod stores attributes of the model.
+model: could be LSTM, DA, GC, for LSTM, DAN(CORAL resp.) and CDAN respectively.
+"""
+mod = {'model':'GC', 'hidden_dim': 64, 'num_layers': 1,
        'patience': 20, 'n_batch': 7, 'num_epoch': 100,
        'source': dataset_train, 'target': dataset_test, 'batch_size': 1024,
        'X_test': X_test,'y_test':y_test, 'y_scaler_train': y_scaler_train, 'y_scaler_test': y_scaler_test,
