@@ -63,6 +63,13 @@ def CD_Frobenius(x, y):
     return torch.sqrt(cd)
 
 def CD_KL(x,y):
+    """
+    First we use Kendall's tau to estimate parameters of gaussian copula,
+    namely the correlation matrix,
+    where torch.sign() is replaced by torch.tanh()
+    Then the distance between two copulas is given by
+    the KL divergence
+    """
     size = x.shape[0] // 2
     cd = 0
     for i in range(x.shape[1]-1):
