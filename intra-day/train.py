@@ -10,6 +10,13 @@ from models import *
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train(mod):
+    """
+    This will return two lists.
+    The first list contains the best results when training is terminated.
+    Namely, the values of loss function for two domains, the relative error for two domains, the RMSEs and relative errors of 22 stocks.
+    The second list contains the historical results of the training for each epoch.
+    Namely, the values of loss function for target domain, the RMSE for two domains, the relative errors for two domains, and domain divergences and copula distances.
+    """
     input_dim, output_dim = mod['source'][0][0].shape[-1], mod['source'][0][-1].shape[0]
     if mod['model'] == 'LSTM':
         model = LSTM(input_dim=input_dim, hidden_dim = mod['hidden_dim'], output_dim=output_dim, num_layers=mod['num_layers']).to(device)
