@@ -28,11 +28,11 @@ dataset_train = Data.TensorDataset(X_train, y_train)
 dataset_test = Data.TensorDataset(X_test, y_test)
 
 
-mod = {'model':'LSTM', 'hidden_dim': 64, 'num_layers': 1,
+mod = {'model':'CDAN', 'hidden_dim': 64, 'num_layers': 1,
        'patience': 20, 'n_batch': 7, 'num_epoch': 100,
        'source': dataset_train, 'target': dataset_test, 'batch_size': 1024,
        'X_test': X_test,'y_test':y_test, 'y_scaler_train': y_scaler_train, 'y_scaler_test': y_scaler_test,
-       'method': 'DA', 't1': 0.1, 't2': 0.1
+       'method': 'KL', 't1': 0.1, 't2': 0.1
        }
 
 a, b = train(mod)
