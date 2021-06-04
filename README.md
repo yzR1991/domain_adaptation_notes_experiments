@@ -1,2 +1,2 @@
 # domain_adaptation_notes_experiments
-Past notes and codes of domain adaptations
+Pytorch implementations of Transfer Learning Of Dependence Shifts Via Copula Regularization.
